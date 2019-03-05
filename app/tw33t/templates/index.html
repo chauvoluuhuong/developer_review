@@ -50,7 +50,7 @@
                 console.log(`inputUserName: ${app.userName}`)
                 // app.socket.emit('clentSendUserName', app.userName)
                 app.$socket.emit('clentSendUserName', app.userName);
-            }, 500),
+            }, 200),
 
             getTweets: function() {
                 window.location = `/get_tweets?screen_name=${this.userName}`
