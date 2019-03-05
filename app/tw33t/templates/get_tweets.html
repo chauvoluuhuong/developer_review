@@ -3,10 +3,15 @@
 {% block content %}
 
 {% for tweet in _tweets %}
-    <div class="row">
-        <p>tweet: {{ tweet['id'] }}</br> {{ tweet['text'] }}</br>create_at: {{ tweet['created_at'] }}</p>
-        </br></br></br>
+<div class="row" style="padding-bottom: 40px;">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">tweet: {{ tweet['id'] }} create_at: {{ tweet['created_at'] }}</h5>
+            <p class="card-text">{{ tweet['text'] }}.</p>
+            <a href="#" class="btn btn-primary">Go to tweet</a>
+        </div>
     </div>
+</div>
 {% endfor %}
 
 {% endblock %}
