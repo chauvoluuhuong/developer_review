@@ -9,3 +9,4 @@ TwitterAPI
 pyjwt
 requests
 Flask_SocketIO==3.0.0
+logging

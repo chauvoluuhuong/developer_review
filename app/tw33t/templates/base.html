@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Tw333t</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client/dist/socket.io.slim.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-socket.io-extended"></script>
+    
+    <script>
+        Vue.use(VueSocketIOExt, io('http://' + document.domain + ':' + location.port + '/searchTwitters'));
+    </script>
+</head>
+
+<body>
+    {% block content %}
+    
+    {% endblock %}
+</body>
+
+</html>

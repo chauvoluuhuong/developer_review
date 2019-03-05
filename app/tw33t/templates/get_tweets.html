@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for tweet in _tweets %}
+    <div class="row">
+        <p>tweet: {{ tweet['id'] }}</br> {{ tweet['text'] }}</br>create_at: {{ tweet['created_at'] }}</p>
+        </br></br></br>
+    </div>
+{% endfor %}
+
+{% endblock %}
