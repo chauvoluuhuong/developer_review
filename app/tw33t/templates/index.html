@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Tw333t</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client/dist/socket.io.slim.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-socket.io-extended"></script>
+    
+    <script>
+        Vue.use(VueSocketIOExt, io('http://' + document.domain + ':' + location.port + '/searchTwitters'));
+    </script>
+</head>
+
+<body>
+    <!-- //////////////////////////////////////////////// -->
+    <div class="main-container container">
+        <div class="center-block input-group" id="app">
+            <input type="text" class="form-control" v-model="userName"  @input="imputSearchEventHandle" placeholder="input user name for search....." list="foundUserList">
+            <datalist id="foundUserList">
+                    <li v-for="user in foundUsers">
+                            [[ user ]]
+                    </li>
+            </datalist>
+            
+            <div class="input-group-append">
+                <button class="btn btn-secondary" type="button">
+                    search
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="/static/js/index.js"></script> -->
+    <script>
+        var app = new Vue({
+            el: '#app',
+            delimiters: ['[[', ']]'],
+            data: {
+                socket: null,
+                userName: '',
+                foundUsers: ['1','2','3','4'],
+                test: 'this is test'
+            },
+
+            sockets: {
+                connect() {
+                    console.log('socket connected')
+                },
+
+                foundUserEmit(json) {
+                    console.log(`socket get foundUser: ${json}`)
+                    this.foundUsers.push(json)
+                } 
+            },
+
+            methods: {
+                imputSearchEventHandle: _.debounce(() => {
+                    // this function is not called by app
+                    console.log(`inputUserName: ${app.userName}`)
+                    // app.socket.emit('clentSendUserName', app.userName)
+                    app.$socket.emit('clentSendUserName', app.userName);
+                }, 500)
+            },
+
+            mounted() {
+            }
+
+        });
+    </script>
+</body>
+
+</html>
